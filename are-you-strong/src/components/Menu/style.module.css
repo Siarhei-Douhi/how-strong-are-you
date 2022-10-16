@@ -1,0 +1,61 @@
+.checkMenu {
+  display: none;
+}
+.burgerMenu {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  width: 35px;
+  height: 23px;
+  z-index: 2;
+  margin-left: 20px;
+  /* box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2); */
+}
+.burgerLines {
+  display: block;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  transition: 1s ease;
+}
+.ln1 {
+  top: 0px;
+}
+.ln2,
+.ln3 {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ln4 {
+  bottom: 0px;
+  right: 0;
+}
+.navToggle {
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 0;
+  margin: 0 auto;
+  height: calc(100% - 100px);
+  background-color: rgba(127, 255, 0, 0.6);
+  transition: 1.5s ease;
+}
+.checkMenu:checked ~ .navToggle {
+  visibility: visible;
+  width: 400px;
+}
+
+.checkMenu:checked + .burgerMenu .ln1,
+.checkMenu:checked + .burgerMenu .ln4 {
+  width: 0;
+}
+.checkMenu:checked + .burgerMenu .ln2 {
+  transform: rotate(45deg);
+}
+.checkMenu:checked + .burgerMenu .ln3 {
+  transform: rotate(-45deg);
+}
