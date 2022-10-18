@@ -15,8 +15,10 @@ export const SelectedLevel = () => {
     navigate(-1);
   };
 
+  // ниже идет дублирование кода, позже исправлю.
+  // так же изменю условие, оно рабочее, но происходят лишние проходы по массивам.
   let level = 0;
-  let arrayLevelId: any;
+  let arrayLevelId: string[] = [""];
   let arrayLevel = levelsHorisontBar.map((item) => {
     if (params.id === item.id) {
       level = item.numberLevel;
@@ -48,6 +50,7 @@ export const SelectedLevel = () => {
       <Header
         children={
           <>
+            {/*повторяется на нескольких страницах, позже заменю на отдельный компонент */}
             <Button text="<" type="array" onClick={navigateBack} />
             <h1 className={style.title}>Уровень {level}</h1>
           </>
