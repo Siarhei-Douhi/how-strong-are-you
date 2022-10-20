@@ -1,13 +1,12 @@
 import { ILevel } from "../../types/levels";
 import { TrainingLevel } from "../TrainingLevel";
 import { useNavigate } from "react-router-dom";
+import { uniqueId } from "../../utils/uniqueId";
 
 interface IProps {
   levels: ILevel[];
   trainingType: string;
 }
-
-const uniqueId = () => Math.random().toString(36).slice(2, 9);
 
 export const TrainingLevelList = (props: IProps) => {
   const navigate = useNavigate();

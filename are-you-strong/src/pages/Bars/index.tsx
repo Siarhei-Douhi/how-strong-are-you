@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import { TrainingLevelList } from "../../components/TrainingLevelList";
 import { levelsBars } from "../../levelsBars";
+import { Title } from "../../components/Title";
 
 export const Bars = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const Bars = () => {
         children={
           <>
             <Button text="<" type="array" onClick={navigateBack} />
-            <h1 className={style.title}>Брусья. Выберите уровень</h1>
+            <Title text={"Брусья. Выберите уровень"} />
           </>
         }
       />

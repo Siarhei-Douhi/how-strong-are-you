@@ -7,6 +7,8 @@ import { LevelProgram } from "../../components/LevelProgram";
 import { levelsHorisontBar } from "../../levelsHorisontBar";
 import { levelsBars } from "../../levelsBars";
 import { levelsPushup } from "../../levelsPushup";
+import { ILevel } from "../../types/levels";
+import { Title } from "../../components/Title";
 
 export const SelectedLevel = () => {
   const params = useParams();
@@ -15,34 +17,26 @@ export const SelectedLevel = () => {
     navigate(-1);
   };
 
-  // ниже идет дублирование кода, позже исправлю.
-  // так же изменю условие, оно рабочее, но происходят лишние проходы по массивам.
   let level = 0;
   let arrayLevelId: string[] = [""];
-  let arrayLevel = levelsHorisontBar.map((item) => {
-    if (params.id === item.id) {
-      level = item.numberLevel;
-      arrayLevelId = item.programLevel;
-      return item.programLevel;
+
+  const getArrayLevel = (array: ILevel[]) => {
+    array.map((item) => {
+      if (params.id === item.id) {
+        level = item.numberLevel;
+        arrayLevelId = item.programLevel;
+        return item.programLevel;
+      }
+    });
+  };
+  if (params.id) {
+    if (+params.id < 12) {
+      getArrayLevel(levelsHorisontBar);
+    } else if (+params.id > 11 && +params.id < 32) {
+      getArrayLevel(levelsBars);
+    } else if (+params.id > 31) {
+      getArrayLevel(levelsPushup);
     }
-  });
-  if (!arrayLevel[0]) {
-    arrayLevel = levelsBars.map((item) => {
-      if (params.id === item.id) {
-        level = item.numberLevel;
-        arrayLevelId = item.programLevel;
-        return item.programLevel;
-      }
-    });
-  }
-  if (!arrayLevel[0]) {
-    arrayLevel = levelsPushup.map((item) => {
-      if (params.id === item.id) {
-        level = item.numberLevel;
-        arrayLevelId = item.programLevel;
-        return item.programLevel;
-      }
-    });
   }
 
   return (
@@ -50,13 +44,14 @@ export const SelectedLevel = () => {
       <Header
         children={
           <>
-            {/*повторяется на нескольких страницах, позже заменю на отдельный компонент */}
             <Button text="<" type="array" onClick={navigateBack} />
-            <h1 className={style.title}>Уровень {level}</h1>
+            <Title text={`Уровень ${level}`} />
           </>
         }
       />
-      <div>{arrayLevel ? <LevelProgram array={arrayLevelId} /> : null}</div>
+      <div>
+        {arrayLevelId[0] ? <LevelProgram array={arrayLevelId} /> : null}
+      </div>
     </Container>
   );
 };

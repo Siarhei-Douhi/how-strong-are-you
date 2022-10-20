@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import { TrainingLevelList } from "../../components/TrainingLevelList";
 import { levelsPushup } from "../../levelsPushup";
+import { Title } from "../../components/Title";
 
 export const Pushup = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const Pushup = () => {
         children={
           <>
             <Button text="<" type="array" onClick={navigateBack} />
-            <h1 className={style.title}>Отжимания. Выберите уровень</h1>
+            <Title text={"Отжимания. Выберите уровень"} />
           </>
         }
       />

@@ -1,10 +1,9 @@
 import style from "./style.module.css";
+import { uniqueId } from "../../utils/uniqueId";
 
 interface IProp {
   array: (string | undefined)[];
 }
-
-const uniqueId = () => Math.random().toString(36).slice(2, 9);
 
 export const LevelProgram = (props: IProp) => {
   let all = 0;

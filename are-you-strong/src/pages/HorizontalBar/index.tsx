@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import { TrainingLevelList } from "../../components/TrainingLevelList";
 import { levelsHorisontBar } from "../../levelsHorisontBar";
+import { Title } from "../../components/Title";
 
 export const HorizontalBar = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const HorizontalBar = () => {
         children={
           <>
             <Button text="<" type="array" onClick={navigateBack} />
-            <h1 className={style.title}>Турник. Выберите уровень</h1>
+            <Title text={"Турник. Выберите уровень"} />
           </>
         }
       />
