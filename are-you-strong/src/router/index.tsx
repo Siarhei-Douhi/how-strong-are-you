@@ -7,6 +7,7 @@ import { HorizontalBar } from "../pages/HorizontalBar";
 import { SelectedLevel } from "../pages/SelectedLevel";
 import { Bars } from "../pages/Bars";
 import { Pushup } from "../pages/Pushup";
+import { RaitingUsers } from "../pages/RaitingUsers";
 
 export const RootRouter = () => {
   return (
@@ -20,6 +21,7 @@ export const RootRouter = () => {
       <Route path="/pushup" element={<Pushup />} />
       <Route path="/selected-level/:id" element={<SelectedLevel />} />
       <Route path="/info" element={<Info />} />
+      <Route path="/raiting-users" element={<RaitingUsers />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );

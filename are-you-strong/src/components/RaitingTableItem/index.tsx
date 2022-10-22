@@ -1,15 +1,7 @@
-// import { IUser } from "../../types/user";
-interface IProps {
+import { IUser } from "../../types/user";
+interface IProps extends IUser {
   position: number;
-  id?: string;
-  name: string;
-  age: number;
-  weight: number;
-  // bars: number;
-  // pushup: number;
-  // horisontalBar: number;
   result: number;
-  country: string;
 }
 
 export const RaitingTableItem = (props: IProps) => {
