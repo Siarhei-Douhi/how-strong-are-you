@@ -16,7 +16,9 @@ export const Main = () => {
 
   return (
     <Container>
-      <Header children={<>{<Menu />}</>} />
+      <Header>
+        <Menu />
+      </Header>
       <div className={style.wrapper}>
         <Button text="Рейтинг" type="primary" onClick={() => {}} />
         <Button

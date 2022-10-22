@@ -11,9 +11,9 @@ export const Error = () => {
   };
   return (
     <Container>
-      <Header
-        children={<Button text="<" type="array" onClick={navigateBack} />}
-      />
+      <Header>
+        <Button text="<" type="array" onClick={navigateBack} />
+      </Header>
       <div className={style.wrap}>
         <h1>404</h1>
         <p>Page not found</p>

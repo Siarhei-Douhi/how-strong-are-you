@@ -1,9 +1,13 @@
 import { IUser } from "../../types/user";
 import { RaitingTableItem } from "../RaitingTableItem";
-import style from "./style.module.css";
+// import style from "./style.module.css";
 
 //передать сюда уже отсортированный массив
-export const RaitingTableList = (props: IUser[]) => {
+export const RaitingTableList = (
+  props: IUser[],
+  result: "bars" | "pushup" | "horisontalBar"
+) => {
+  let maxResult = result;
   return (
     <table>
       <tbody>
@@ -23,8 +27,7 @@ export const RaitingTableList = (props: IUser[]) => {
               name={item.name}
               age={item.age}
               weight={item.weight}
-              //позже заменить bars на выбранный вид упражнения в сортировке
-              result={item.bars}
+              result={item[maxResult]}
               country={item.country}
             />
           );

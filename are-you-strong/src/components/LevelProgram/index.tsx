@@ -1,5 +1,5 @@
 import style from "./style.module.css";
-import { uniqueId } from "../../utils/uniqueId";
+import { getUniqueId } from "../../helpers";
 
 interface IProp {
   array: (string | undefined)[];
@@ -16,7 +16,7 @@ export const LevelProgram = (props: IProp) => {
             }
 
             return (
-              <div className={style.container} key={uniqueId()}>
+              <div className={style.container} key={getUniqueId()}>
                 <div className={style.wrapperInfo}>
                   <h3>День {index + 1}</h3>
                   <h3>Всего: {all}</h3>

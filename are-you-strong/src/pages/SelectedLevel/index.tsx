@@ -4,9 +4,9 @@ import { Button } from "../../components/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import style from "./style.module.css";
 import { LevelProgram } from "../../components/LevelProgram";
-import { levelsHorisontBar } from "../../levelsHorisontBar";
-import { levelsBars } from "../../levelsBars";
-import { levelsPushup } from "../../levelsPushup";
+import { levelsHorisontBar } from "../../workoutData/levelsHorisontBar";
+import { levelsBars } from "../../workoutData/levelsBars";
+import { levelsPushup } from "../../workoutData/levelsPushup";
 import { ILevel } from "../../types/levels";
 import { Title } from "../../components/Title";
 
@@ -41,14 +41,10 @@ export const SelectedLevel = () => {
 
   return (
     <Container>
-      <Header
-        children={
-          <>
-            <Button text="<" type="array" onClick={navigateBack} />
-            <Title text={`Уровень ${level}`} />
-          </>
-        }
-      />
+      <Header>
+        <Button text="<" type="array" onClick={navigateBack} />
+        <Title text={`Уровень ${level}`} />
+      </Header>
       <div>
         {arrayLevelId[0] ? <LevelProgram array={arrayLevelId} /> : null}
       </div>

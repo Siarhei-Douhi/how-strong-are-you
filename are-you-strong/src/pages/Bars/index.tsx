@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import { TrainingLevelList } from "../../components/TrainingLevelList";
-import { levelsBars } from "../../levelsBars";
+import { levelsBars } from "../../workoutData/levelsBars";
 import { Title } from "../../components/Title";
 
 export const Bars = () => {
@@ -14,14 +14,10 @@ export const Bars = () => {
   };
   return (
     <Container>
-      <Header
-        children={
-          <>
-            <Button text="<" type="array" onClick={navigateBack} />
-            <Title text={"Брусья. Выберите уровень"} />
-          </>
-        }
-      />
+      <Header>
+        <Button text="<" type="array" onClick={navigateBack} />
+        <Title text={"Брусья. Выберите уровень"} />
+      </Header>
       <div className={style.levelListWrapper}>
         <TrainingLevelList levels={levelsBars} trainingType="Отжимаетесь" />
       </div>

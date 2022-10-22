@@ -12,14 +12,10 @@ export const Info = () => {
   };
   return (
     <Container>
-      <Header
-        children={
-          <>
-            <Button text="<" type="array" onClick={navigateBack} />
-            <Title text={"Информация о приложении"} />
-          </>
-        }
-      />
+      <Header>
+        <Button text="<" type="array" onClick={navigateBack} />
+        <Title text={"Информация о приложении"} />
+      </Header>
       <div className={style.wrapper}>
         <h2>Как тренироваться</h2>
         <ol>

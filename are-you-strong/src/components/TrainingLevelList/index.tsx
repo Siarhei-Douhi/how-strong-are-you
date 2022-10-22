@@ -1,7 +1,6 @@
 import { ILevel } from "../../types/levels";
 import { TrainingLevel } from "../TrainingLevel";
 import { useNavigate } from "react-router-dom";
-import { uniqueId } from "../../utils/uniqueId";
 
 interface IProps {
   levels: ILevel[];
@@ -22,9 +21,9 @@ export const TrainingLevelList = (props: IProps) => {
           navigateToSelectedLevel(item.id);
         };
         return (
-          <div key={uniqueId()} onClick={clickLevel}>
+          <div key={item.id} onClick={clickLevel}>
             <TrainingLevel
-              id={uniqueId()}
+              id={item.id}
               interval={item.interval}
               numberLevel={item.numberLevel}
               programLevel={item.programLevel}
