@@ -3,7 +3,7 @@ import { IUser } from "../../types/user";
 import { TRainings } from "../../types/rainings";
 import { Button } from "../Button";
 import { SortUsers } from "../SortUsers";
-import { users } from "./mockData";
+// import { users } from "./mockData";
 import style from "./style.module.css";
 
 const sortUsersOfRaiting = (arr: IUser[], typeArray: TRainings) => {
@@ -13,19 +13,19 @@ const sortUsersOfRaiting = (arr: IUser[], typeArray: TRainings) => {
 
 export const UsersRaitingTabs = () => {
   const [selectedTab, setSelectedTab] = useState<TRainings>("bars");
+  const [usersAll, setUsersAll] = useState<IUser[]>([]);
 
-  // для получения пользователей использовать json.server
-  // const users = fetch("http://localhost:3000/users")
-  //   .then((response) => {
-  //     return response.json();
-  //   })
-  //   .then((json) => {
-  //     return json;
-  //   });
-  // console.log(users);
-
+  // для получения пользователей использую json-server
+  // установил дополнительную библиотеку, чтобы запускать сразу два localhost(:3000 и :3001)
+  // все работает
+  async function getUsers() {
+    const USERS_URL = "http://localhost:3001/users";
+    const response = await fetch(USERS_URL);
+    const users = await response.json();
+    return users;
+  }
   // пока использую "моковые данные" (users)
-  // user заменить на данные залогиненного пользователя
+  // данные user позже заменю на данные залогиненного пользователя
   const user = {
     id: "55555",
     name: "UserMock",
@@ -36,7 +36,12 @@ export const UsersRaitingTabs = () => {
     horisontalBar: 10,
     country: "Belarus",
   };
-  const arrayAllUsers = [...users, user];
+
+  useEffect(() => {
+    getUsers().then((users) => {
+      setUsersAll([...users, user]);
+    });
+  }, []);
 
   return (
     <>
@@ -64,7 +69,7 @@ export const UsersRaitingTabs = () => {
         />
       </div>
       <SortUsers
-        array={sortUsersOfRaiting(arrayAllUsers, selectedTab)}
+        array={sortUsersOfRaiting(usersAll, selectedTab)}
         maxResult={selectedTab}
       />
     </>
