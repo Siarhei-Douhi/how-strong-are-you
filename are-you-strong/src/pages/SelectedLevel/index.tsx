@@ -9,6 +9,8 @@ import { levelsBars } from "../../workoutData/levelsBars";
 import { levelsPushup } from "../../workoutData/levelsPushup";
 import { ILevel } from "../../types/levels";
 import { Title } from "../../components/Title";
+import { TrainingGifInfo } from "../../components/TrainingGifInfo";
+import { horisontalBarGif, barsGif, pushupGif } from "../../assets";
 
 export const SelectedLevel = () => {
   const params = useParams();
@@ -29,13 +31,16 @@ export const SelectedLevel = () => {
       }
     });
   };
+  let newGif = horisontalBarGif;
   if (params.id) {
     if (+params.id < 12) {
       getArrayLevel(levelsHorisontBar);
     } else if (+params.id > 11 && +params.id < 32) {
       getArrayLevel(levelsBars);
+      newGif = barsGif;
     } else if (+params.id > 31) {
       getArrayLevel(levelsPushup);
+      newGif = pushupGif;
     }
   }
 
@@ -48,6 +53,7 @@ export const SelectedLevel = () => {
       <div>
         {arrayLevelId[0] ? <LevelProgram array={arrayLevelId} /> : null}
       </div>
+      <TrainingGifInfo img={newGif} />
     </Container>
   );
 };
