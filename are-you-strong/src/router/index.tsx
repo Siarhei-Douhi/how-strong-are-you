@@ -1,4 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { ReactNode, useContext } from "react";
+import { Context } from "../App";
 import { Login } from "../pages/Login";
 import { Main } from "../pages/Main";
 import { Registration } from "../pages/Registration";
@@ -33,9 +35,19 @@ export const RootRouter = () => {
       <Route path="/pushup" element={<Pushup />} />
       <Route path="/selected-level/:id" element={<SelectedLevel />} />
       <Route path="/info" element={<Info />} />
-      <Route path="/raiting-users" element={<RaitingUsers />} />
-      <Route path="/data-user" element={<UserData />} />
+      <Route path="/raiting-users" element={useLoginGuard(<RaitingUsers />)} />
+      <Route path="/data-user" element={useLoginGuard(<UserData />)} />
       <Route path="*" element={<Error />} />
     </Routes>
   );
+};
+
+const useLoginGuard = (component: ReactNode) => {
+  const { user } = useContext(Context);
+
+  if (user) {
+    return component;
+  } else {
+    return <Navigate to="/login" />;
+  }
 };

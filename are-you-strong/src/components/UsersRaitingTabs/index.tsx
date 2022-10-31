@@ -4,11 +4,12 @@ import { TRainings } from "../../types/rainings";
 import { Button } from "../Button";
 import { SortUsers } from "../SortUsers";
 import { Context } from "../../App";
+import { getUserData } from "../../helpers";
+import { getUsers } from "../../api/users";
 import style from "./style.module.css";
 
 const sortUsersOfRaiting = (arr: IUser[], typeArray: TRainings) => {
-  arr.sort((a, b) => b[typeArray] - a[typeArray]);
-  return arr;
+  return arr.sort((a, b) => b[typeArray] - a[typeArray]);
 };
 
 export const UsersRaitingTabs = () => {
@@ -16,25 +17,19 @@ export const UsersRaitingTabs = () => {
   const [selectedTab, setSelectedTab] = useState<TRainings>("bars");
   const [usersAll, setUsersAll] = useState<IUser[]>([]);
 
-  const data = localStorage.getItem(`userData${user?.id}`);
-  let userData: IUser;
-  if (data !== null) {
-    userData = JSON.parse(data);
-  }
-
-  async function getUsers() {
-    try {
-      const USERS_URL = "http://localhost:3001/users";
-      const response = await fetch(USERS_URL);
-      const users = await response.json();
-      setUsersAll([...users, userData]);
-    } catch (err) {
-      setUsersAll([userData]);
-    }
-  }
+  const userData = getUserData(user?.id);
 
   useEffect(() => {
-    getUsers();
+    getUsers()
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        setUsersAll([...json, userData]);
+      })
+      .catch(() => {
+        setUsersAll([userData]);
+      });
   }, []);
 
   return (

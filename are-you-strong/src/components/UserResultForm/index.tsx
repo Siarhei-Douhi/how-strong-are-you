@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import { ChangeEventHandler, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
-import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 import { Context } from "../../App";
 import { validateNumber, validateCountry } from "../../utils/validation";
 
@@ -127,6 +127,7 @@ export const UserResultForm = () => {
         bars: +bars,
         pushup: +pushups,
       };
+
       localStorage.setItem(`userData${user?.id}`, JSON.stringify(userData));
       navigate("/raiting-users");
     } else {
