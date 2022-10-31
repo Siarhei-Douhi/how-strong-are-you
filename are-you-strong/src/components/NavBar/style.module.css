@@ -1,0 +1,30 @@
+.links {
+  text-align: left;
+}
+.link {
+  list-style-type: none;
+}
+.link a {
+  text-decoration: none;
+  color: white;
+}
+.logOut {
+  background-image: url(../../assets/images/icon_logout.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: right;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  width: 165px;
+  font-size: 25px;
+  margin: 0 100% 20px 0;
+  color: white;
+}
+.wrapperToggle {
+  display: flex;
+  justify-content: space-around;
+}
+.nameTheme {
+  margin: 0;
+}

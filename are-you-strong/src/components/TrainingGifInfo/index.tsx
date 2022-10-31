@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import style from "./style.module.css";
 
 interface IProps {
-  img: any;
+  img: string;
 }
 
 export const TrainingGifInfo = (props: IProps) => {

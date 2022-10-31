@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { IUser } from "../../types/user";
 import { TRainings } from "../../types/rainings";
 import { Button } from "../Button";
 import { SortUsers } from "../SortUsers";
-// import { users } from "./mockData";
+import { Context } from "../../App";
 import style from "./style.module.css";
 
 const sortUsersOfRaiting = (arr: IUser[], typeArray: TRainings) => {
@@ -12,35 +12,29 @@ const sortUsersOfRaiting = (arr: IUser[], typeArray: TRainings) => {
 };
 
 export const UsersRaitingTabs = () => {
+  const { user } = useContext(Context);
   const [selectedTab, setSelectedTab] = useState<TRainings>("bars");
   const [usersAll, setUsersAll] = useState<IUser[]>([]);
 
-  // для получения пользователей использую json-server
-  // установил дополнительную библиотеку, чтобы запускать сразу два localhost(:3000 и :3001)
-  // все работает
-  async function getUsers() {
-    const USERS_URL = "http://localhost:3001/users";
-    const response = await fetch(USERS_URL);
-    const users = await response.json();
-    return users;
+  const data = localStorage.getItem(`userData${user?.id}`);
+  let userData: IUser;
+  if (data !== null) {
+    userData = JSON.parse(data);
   }
-  // пока использую "моковые данные" (users)
-  // данные user позже заменю на данные залогиненного пользователя
-  const user = {
-    id: "55555",
-    name: "UserMock",
-    age: 30,
-    weight: 65,
-    bars: 40,
-    pushup: 50,
-    horisontalBar: 10,
-    country: "Belarus",
-  };
+
+  async function getUsers() {
+    try {
+      const USERS_URL = "http://localhost:3001/users";
+      const response = await fetch(USERS_URL);
+      const users = await response.json();
+      setUsersAll([...users, userData]);
+    } catch (err) {
+      setUsersAll([userData]);
+    }
+  }
 
   useEffect(() => {
-    getUsers().then((users) => {
-      setUsersAll([...users, user]);
-    });
+    getUsers();
   }, []);
 
   return (

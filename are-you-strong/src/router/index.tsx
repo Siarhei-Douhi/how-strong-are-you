@@ -1,5 +1,9 @@
 import { Route, Routes } from "react-router-dom";
+import { Login } from "../pages/Login";
 import { Main } from "../pages/Main";
+import { Registration } from "../pages/Registration";
+import { Activation } from "../pages/Activation";
+import { ResetPassword } from "../pages/ResetPassword";
 import { Error } from "../pages/Error";
 import { TraningPrograms } from "../pages/TraningPrograms";
 import { Info } from "../pages/Info";
@@ -8,13 +12,21 @@ import { SelectedLevel } from "../pages/SelectedLevel";
 import { Bars } from "../pages/Bars";
 import { Pushup } from "../pages/Pushup";
 import { RaitingUsers } from "../pages/RaitingUsers";
+import { ConfirmPassword } from "../pages/ConfirmPassword";
+import { UserData } from "../pages/UserData";
 
 export const RootRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/registration" />
-      <Route path="/login" />
+      <Route path="/login" element={<Login />} />
+      <Route path="/registration" element={<Registration />} />
+      <Route path="/activate/:uid/:token" element={<Activation />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route
+        path="/password/reset/confirm/:uid/:token"
+        element={<ConfirmPassword />}
+      />
       <Route path="/training-programs" element={<TraningPrograms />} />
       <Route path="/horizontal-bar" element={<HorizontalBar />} />
       <Route path="/bars" element={<Bars />} />
@@ -22,6 +34,7 @@ export const RootRouter = () => {
       <Route path="/selected-level/:id" element={<SelectedLevel />} />
       <Route path="/info" element={<Info />} />
       <Route path="/raiting-users" element={<RaitingUsers />} />
+      <Route path="/data-user" element={<UserData />} />
       <Route path="*" element={<Error />} />
     </Routes>
   );

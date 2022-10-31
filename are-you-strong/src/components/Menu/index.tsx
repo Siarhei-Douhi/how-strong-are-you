@@ -1,3 +1,4 @@
+import { NavBar } from "../NavBar";
 import style from "./style.module.css";
 
 export const Menu = () => {
@@ -10,7 +11,9 @@ export const Menu = () => {
         <span className={`${style.burgerLines} ${style.ln3}`}></span>
         <span className={`${style.burgerLines} ${style.ln4}`}></span>
       </label>
-      <nav className={style.navToggle}></nav>
+      <nav className={style.navToggle}>
+        <NavBar />
+      </nav>
     </>
   );
 };

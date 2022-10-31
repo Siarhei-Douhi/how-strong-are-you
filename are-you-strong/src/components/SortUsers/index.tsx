@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { IUser } from "../../types/user";
 import { TRainings } from "../../types/rainings";
 import { Button } from "../Button";
 import { RaitingTableList } from "../RaitingTableList";
 import style from "./style.module.css";
+import { Context } from "../../App";
 
 type SortTabs = "all" | "weight" | "age";
 
@@ -14,14 +15,20 @@ interface IProps {
 
 export const SortUsers = (props: IProps) => {
   const [selectedTab, setSelectedTab] = useState<SortTabs>("all");
+  const { user } = useContext(Context);
 
   // позже заменить данные user на данные зарегестрированного пользователя
   // пока используется хардкод user:
-  const user = { age: 30, weight: 65 };
+  // const user = { age: 30, weight: 65 };
+  const data = localStorage.getItem(`userData${user?.id}`);
+  let userData: IUser;
+  if (data !== null) {
+    userData = JSON.parse(data);
+  }
 
   const getSortArray = (paramSort: "weight" | "age") => {
     const newArray = props.array.filter(
-      (item) => user[paramSort] === item[paramSort]
+      (item) => userData[paramSort] === item[paramSort]
     );
     return newArray;
   };

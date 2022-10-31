@@ -1,6 +1,8 @@
 import { IUser } from "../../types/user";
 import { RaitingTableItem } from "../RaitingTableItem";
 import { TRainings } from "../../types/rainings";
+import { Context } from "../../App";
+import { useContext } from "react";
 import style from "./style.module.css";
 
 interface IProps {
@@ -9,6 +11,8 @@ interface IProps {
 }
 
 export const RaitingTableList = (props: IProps) => {
+  const { user } = useContext(Context);
+  let positionUser: number = 0;
   return (
     <>
       <div className={style.wrapperTbody}>
@@ -25,6 +29,9 @@ export const RaitingTableList = (props: IProps) => {
           </thead>
           <tbody className={style.tbody}>
             {props.array.map((item, index) => {
+              if (+item.id == user?.id) {
+                positionUser = index + 1;
+              }
               return (
                 <RaitingTableItem
                   key={item.id}
@@ -44,6 +51,9 @@ export const RaitingTableList = (props: IProps) => {
           </tbody>
         </table>
       </div>
+      <p
+        className={style.textUnderTable}
+      >{`Ваше место в рейтинге - ${positionUser}`}</p>
     </>
   );
 };

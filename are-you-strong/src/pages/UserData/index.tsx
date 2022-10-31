@@ -1,26 +1,22 @@
+import { UserResultForm } from "../../components/UserResultForm";
 import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import style from "./style.module.css";
 import { Title } from "../../components/Title";
-import { UsersRaitingTabs } from "../../components/UsersRaitingTabs";
 
-export const RaitingUsers = () => {
+export const UserData = () => {
   const navigate = useNavigate();
   const navigateBack = () => {
-    navigate("/");
+    navigate(-1);
   };
-
   return (
     <Container>
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
-        <Title text="Рейтинг пользователей" />
+        <Title text={"Запишите свои данные"} />
       </Header>
-      <div className={style.wrapper}>
-        <UsersRaitingTabs />
-      </div>
+      <UserResultForm />
     </Container>
   );
 };

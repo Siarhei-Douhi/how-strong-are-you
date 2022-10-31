@@ -42,11 +42,18 @@
   margin: 0 auto;
   height: calc(100% - 100px);
   background-color: rgba(127, 255, 0, 0.6);
-  transition: 1.5s ease;
+  transition: 1s ease;
+}
+.navToggle * {
+  opacity: 0;
 }
 .checkMenu:checked ~ .navToggle {
   visibility: visible;
   width: 400px;
+}
+.checkMenu:checked ~ .navToggle * {
+  opacity: 1;
+  transition: 0.5s ease;
 }
 
 .checkMenu:checked + .burgerMenu .ln1,
