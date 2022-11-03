@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { RootRouter } from "./router";
-import { getUser, refreshToken } from "./api/auth";
+import { getUser } from "./api/auth";
 import { IUser } from "./types/auth";
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 

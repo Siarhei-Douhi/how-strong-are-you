@@ -1,5 +1,5 @@
 import { useContext, useState, ChangeEventHandler } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { getUser, login } from "../../api/auth";
 import { Context } from "../../App";
 import { Button } from "../Button";
@@ -119,7 +119,7 @@ export const LoginForm = () => {
       </div>
       <p className={style.textErrorUnderForm}>{error}</p>
       <p className={`${style.text} ${isDark ? style.textDark : ""}`}>
-        Forgot your password? <a href="#">Reset password</a>
+        Forgot your password? <Link to="/reset-password">Reset password</Link>
       </p>
     </div>
   );

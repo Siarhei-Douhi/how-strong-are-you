@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../App";
 import { DarkModeToggle } from "../DarkModeToggle";
@@ -20,7 +20,8 @@ export const NavBar = () => {
     navigate("/");
     setUser(null);
 
-    localStorage.clear();
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("access");
   };
 
   return (

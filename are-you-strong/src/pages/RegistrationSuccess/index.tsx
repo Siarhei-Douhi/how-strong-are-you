@@ -25,7 +25,8 @@ export const RegistrationConfirmation = () => {
         textBtn="Home"
         onClick={navigateToHome}
       >
-        Please blab bla <a href="#">test@gmail.com</a>
+        Please activate your account with the activation link in the email{" "}
+        <a href="#">user@gmail.com</a> Please, check your email
       </InfoTemplate>
     </Container>
   );

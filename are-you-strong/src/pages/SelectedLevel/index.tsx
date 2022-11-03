@@ -2,15 +2,11 @@ import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { useNavigate, useParams } from "react-router-dom";
-import style from "./style.module.css";
 import { LevelProgram } from "../../components/LevelProgram";
-import { levelsHorisontBar } from "../../workoutData/levelsHorisontBar";
-import { levelsBars } from "../../workoutData/levelsBars";
-import { levelsPushup } from "../../workoutData/levelsPushup";
-import { ILevel } from "../../types/levels";
 import { Title } from "../../components/Title";
 import { TrainingGifInfo } from "../../components/TrainingGifInfo";
-import { horisontalBarGif, barsGif, pushupGif } from "../../assets";
+import { getGifById, getLevelData } from "./helpers";
+import style from "./style.module.css";
 
 export const SelectedLevel = () => {
   const params = useParams();
@@ -19,30 +15,12 @@ export const SelectedLevel = () => {
     navigate(-1);
   };
 
-  let level = 0;
-  let arrayLevelId: string[] = [""];
+  const newGif = params.id ? getGifById(+params.id) : "";
 
-  const getArrayLevel = (array: ILevel[]) => {
-    array.map((item) => {
-      if (params.id === item.id) {
-        level = item.numberLevel;
-        arrayLevelId = item.programLevel;
-        return item.programLevel;
-      }
-    });
-  };
-  let newGif = horisontalBarGif;
-  if (params.id) {
-    if (+params.id < 12) {
-      getArrayLevel(levelsHorisontBar);
-    } else if (+params.id > 11 && +params.id < 32) {
-      getArrayLevel(levelsBars);
-      newGif = barsGif;
-    } else if (+params.id > 31) {
-      getArrayLevel(levelsPushup);
-      newGif = pushupGif;
-    }
-  }
+  const level = params.id ? getLevelData(+params.id)?.level : 0;
+  const arrayLevelId = params.id
+    ? getLevelData(+params.id)?.arrayLevelId
+    : [""];
 
   return (
     <Container>
@@ -50,10 +28,8 @@ export const SelectedLevel = () => {
         <Button text="<" type="array" onClick={navigateBack} />
         <Title text={`Уровень ${level}`} />
       </Header>
-      <div>
-        {arrayLevelId[0] ? <LevelProgram array={arrayLevelId} /> : null}
-      </div>
-      <TrainingGifInfo img={newGif} />
+      <div>{arrayLevelId ? <LevelProgram array={arrayLevelId} /> : null}</div>
+      {newGif ? <TrainingGifInfo img={newGif} /> : null}
     </Container>
   );
 };

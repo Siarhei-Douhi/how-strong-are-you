@@ -73,7 +73,7 @@ export const RegistrationForm = () => {
     setConfirmError("");
   };
 
-  const onClickLogin = () => {
+  const onClickRegistration = () => {
     setError("");
     const errors = {
       user: validateRequired(user),
@@ -184,7 +184,11 @@ export const RegistrationForm = () => {
       />
       <p className={style.textErrorUnderForm}>{error}</p>
       <div className={style.formBtn}>
-        <Button text="Registration" onClick={onClickLogin} type={"primary"} />
+        <Button
+          text="Registration"
+          onClick={onClickRegistration}
+          type={"primary"}
+        />
       </div>
     </div>
   );

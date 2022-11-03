@@ -4,15 +4,27 @@ import { Button } from "../../components/Button";
 import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
-import { Title } from "../../components/Title";
 import { NotificationManager } from "react-notifications";
 import { useNavigate } from "react-router-dom";
+import { validateEmail } from "../../utils/validation";
+import style from "./style.module.css";
 
 export const ResetPassword = () => {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleEmail: ChangeEventHandler<HTMLInputElement> = (event) => {
     setEmail(event.target.value);
+  };
+
+  const handleEmailBlur = () => {
+    const error = validateEmail(email);
+
+    setEmailError(error);
+  };
+
+  const handleEmailFocus = () => {
+    setEmailError("");
   };
 
   const sendEmail = () => {
@@ -37,9 +49,18 @@ export const ResetPassword = () => {
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
       </Header>
-      <Title text="Смена пароля" />
-      <Input value={email} onChange={handleEmail} />
-      <Button text="Send email" onClick={sendEmail} type="primary" />
+      <div className={style.wrapper}>
+        <h1 className={style.title}> Password change</h1>
+        <Input
+          value={email}
+          placeholder="Email"
+          onChange={handleEmail}
+          onBlur={handleEmailBlur}
+          onFocus={handleEmailFocus}
+          error={emailError}
+        />
+        <Button text="Send email" onClick={sendEmail} type="primary" />
+      </div>
     </Container>
   );
 };

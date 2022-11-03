@@ -19,13 +19,13 @@ export const Activation = () => {
     <Container>
       <Header />
       <InfoTemplate
-        title={"Активациия прошла успешно"}
+        title={"Success"}
         textBtn="Login"
         onClick={() => {
           navigate("/login");
         }}
       >
-        Теперь вы можете залогиниться
+        Email confirmed. Your registration is now completed
       </InfoTemplate>
     </Container>
   );

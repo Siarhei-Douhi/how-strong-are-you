@@ -6,20 +6,32 @@ import style from "./style.module.css";
 // import userEvent from "@testing-library/user-event";
 import { Context } from "../../App";
 import { validateNumber, validateCountry } from "../../utils/validation";
+//
+import { getUserData } from "../../helpers";
 
 export const UserResultForm = () => {
   const { user } = useContext(Context);
-  const [age, setAge] = useState("");
+  const userDataLocStor = getUserData(user?.id);
+
+  const [age, setAge] = useState(userDataLocStor ? userDataLocStor.age : "");
   const [ageError, setAgeError] = useState("");
-  const [weight, setWeight] = useState("");
+  const [weight, setWeight] = useState(
+    userDataLocStor ? userDataLocStor.weight : ""
+  );
   const [weightError, setWeightError] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState(
+    userDataLocStor ? userDataLocStor.country : ""
+  );
   const [countryError, setCountryError] = useState("");
-  const [horisontalBar, setHorisontalBar] = useState("");
+  const [horisontalBar, setHorisontalBar] = useState(
+    userDataLocStor ? userDataLocStor.horisontalBar : ""
+  );
   const [horisontalBarError, setHorisontalBarError] = useState("");
-  const [bars, setBars] = useState("");
+  const [bars, setBars] = useState(userDataLocStor ? userDataLocStor.bars : "");
   const [barsError, setBarsError] = useState("");
-  const [pushups, setPushups] = useState("");
+  const [pushups, setPushups] = useState(
+    userDataLocStor ? userDataLocStor.pushup : ""
+  );
   const [pushupsError, setPushupsError] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();

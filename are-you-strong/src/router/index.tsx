@@ -16,6 +16,7 @@ import { Pushup } from "../pages/Pushup";
 import { RaitingUsers } from "../pages/RaitingUsers";
 import { ConfirmPassword } from "../pages/ConfirmPassword";
 import { UserData } from "../pages/UserData";
+import { RegistrationConfirmation } from "../pages/RegistrationSuccess";
 
 export const RootRouter = () => {
   return (
@@ -23,6 +24,7 @@ export const RootRouter = () => {
       <Route path="/" element={<Main />} />
       <Route path="/login" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
+      <Route path="/register-success" element={<RegistrationConfirmation />} />
       <Route path="/activate/:uid/:token" element={<Activation />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route

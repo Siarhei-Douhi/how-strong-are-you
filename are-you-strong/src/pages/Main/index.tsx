@@ -19,13 +19,13 @@ export const Main = () => {
   };
 
   const onClickRaiting = () => {
-    const data = localStorage.getItem(`userData${user?.id}`);
     if (user) {
-      data ? navigate("/raiting-users") : navigate("/data-user");
+      navigate("/data-user");
     } else {
       navigate("/login");
     }
   };
+
   return (
     <Container>
       <Header>
