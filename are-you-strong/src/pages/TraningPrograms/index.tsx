@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
+import { Title } from "../../components/Title";
 
 export const TraningPrograms = () => {
   const navigate = useNavigate();
@@ -21,14 +22,10 @@ export const TraningPrograms = () => {
 
   return (
     <Container>
-      <Header
-        children={
-          <>
-            <Button text="<" type="array" onClick={navigateBack} />
-            <h1 className={style.title}>Программы тренировок</h1>
-          </>
-        }
-      />
+      <Header>
+        <Button text="<" type="array" onClick={navigateBack} />
+        <Title text="Программы тренировок" />
+      </Header>
       <div className={style.wrapper}>
         <Button text="Турник" type="primary" onClick={navigateHorizontalBar} />
         <Button text="Брусья" type="primary" onClick={navigateBars} />

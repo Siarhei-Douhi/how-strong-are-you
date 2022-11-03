@@ -7,8 +7,6 @@ interface IProps {
   trainingType: string;
 }
 
-const uniqueId = () => Math.random().toString(36).slice(2, 9);
-
 export const TrainingLevelList = (props: IProps) => {
   const navigate = useNavigate();
 
@@ -23,9 +21,9 @@ export const TrainingLevelList = (props: IProps) => {
           navigateToSelectedLevel(item.id);
         };
         return (
-          <div key={uniqueId()} onClick={clickLevel}>
+          <div key={item.id} onClick={clickLevel}>
             <TrainingLevel
-              id={uniqueId()}
+              id={item.id}
               interval={item.interval}
               numberLevel={item.numberLevel}
               programLevel={item.programLevel}

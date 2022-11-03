@@ -1,0 +1,31 @@
+.input {
+  width: 372px;
+  height: 63px;
+  font-size: 25px;
+  background: #f5f9ff;
+  border: 4px solid greenyellow;
+  border-radius: 10px;
+}
+.labelTitle {
+  margin: 0 0 14px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 29px;
+  letter-spacing: 0.05em;
+  color: #254050;
+}
+.labelTitleDark {
+  color: white;
+}
+.inputDark {
+  background: grey;
+  border: 4px solid white;
+  color: white;
+}
+.textError {
+  color: red;
+  width: 384px;
+  height: 20px;
+}

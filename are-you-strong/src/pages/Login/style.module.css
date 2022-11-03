@@ -1,0 +1,23 @@
+.wrapperLink {
+  margin: 30px auto;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 65px;
+  letter-spacing: 0.03em;
+  color: #75869b;
+  text-align: center;
+}
+.active_link {
+  color: green;
+}
+.noActive_link {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 65px;
+  letter-spacing: 0.03em;
+  color: #75869b;
+}

@@ -1,0 +1,16 @@
+.wrap {
+  width: 360px;
+  position: absolute;
+  bottom: 20px;
+  left: calc(50% - 180px);
+}
+.visibleOn {
+  height: 360px;
+  opacity: 1;
+  transition: 1s ease;
+}
+.visibleOff {
+  height: 360px;
+  opacity: 0;
+  transition: 1s ease;
+}

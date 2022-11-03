@@ -1,0 +1,8 @@
+.form {
+  width: 385px;
+  margin: 20px auto;
+}
+.textErrorUnderForm {
+  color: red;
+  height: 20px;
+}

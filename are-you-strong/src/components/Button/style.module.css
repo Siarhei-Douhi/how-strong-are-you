@@ -20,6 +20,20 @@
 .primary {
   background-color: chartreuse;
 }
+.primary1 {
+  background-color: chartreuse;
+}
+.primary1:hover {
+  transform: none;
+  color: grey;
+}
+.primary2 {
+  background-color: gray;
+}
+.primary2:hover {
+  transform: none;
+  color: green;
+}
 .array {
   background-color: transparent;
   font-size: 30px;
