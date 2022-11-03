@@ -22,26 +22,41 @@ export const getGifById = (id: number) => {
   }
 };
 
+// export const getLevelData = (id: number) => {
+//   if (id < 12) {
+//     const data = getArrayLevel(levelsHorisontBar, id);
+//     return {
+//       level: data?.numberLevel,
+//       arrayLevelId: data?.programLevel,
+//     };
+//   }
+//   if (id > 11 && id < 32) {
+//     const data = getArrayLevel(levelsBars, id);
+//     return {
+//       level: data?.numberLevel,
+//       arrayLevelId: data?.programLevel,
+//     };
+//   }
+//   if (id > 31) {
+//     const data = getArrayLevel(levelsPushup, id);
+//     return {
+//       level: data?.numberLevel,
+//       arrayLevelId: data?.programLevel,
+//     };
+//   }
+// };
+
 export const getLevelData = (id: number) => {
-  if (id < 12) {
-    const data = getArrayLevel(levelsHorisontBar, id);
-    return {
-      level: data ? data.numberLevel : 0,
-      arrayLevelId: data ? data.programLevel : ["1"],
-    };
-  }
+  let data = getArrayLevel(levelsHorisontBar, id);
+
   if (id > 11 && id < 32) {
-    const data = getArrayLevel(levelsBars, id);
-    return {
-      level: data ? data.numberLevel : 0,
-      arrayLevelId: data ? data.programLevel : ["1"],
-    };
+    data = getArrayLevel(levelsBars, id);
   }
   if (id > 31) {
-    const data = getArrayLevel(levelsPushup, id);
-    return {
-      level: data ? data.numberLevel : 0,
-      arrayLevelId: data ? data.programLevel : ["1"],
-    };
+    data = getArrayLevel(levelsPushup, id);
   }
+  return {
+    level: data?.numberLevel,
+    arrayLevelId: data?.programLevel,
+  };
 };
