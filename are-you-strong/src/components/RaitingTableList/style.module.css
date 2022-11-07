@@ -4,6 +4,7 @@
   color: green;
   border-spacing: 5px;
   font-size: 20px;
+  background: transparent;
 }
 .tbody {
   color: black;
@@ -25,4 +26,5 @@ th {
 }
 .textUnderTable {
   font-size: 20px;
+  color: white;
 }

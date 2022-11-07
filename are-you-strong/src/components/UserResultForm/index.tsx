@@ -151,7 +151,7 @@ export const UserResultForm = () => {
     <div className={style.form}>
       <Input
         value={age}
-        placeholder="Возраст"
+        label="Возраст"
         onChange={handleAge}
         onBlur={handleAgeBlur}
         onFocus={handleAgelFocus}
@@ -159,7 +159,7 @@ export const UserResultForm = () => {
       />
       <Input
         value={weight}
-        placeholder="Вес"
+        label="Вес"
         onChange={handleWeight}
         onBlur={handleWeightBlur}
         onFocus={handleWeightFocus}
@@ -167,7 +167,7 @@ export const UserResultForm = () => {
       />
       <Input
         value={country}
-        placeholder="Страна"
+        label="Страна"
         onChange={handleCountry}
         onBlur={handleCountryBlur}
         onFocus={handleCountryFocus}
@@ -175,7 +175,7 @@ export const UserResultForm = () => {
       />
       <Input
         value={horisontalBar}
-        placeholder="Турник"
+        label="Турник"
         onChange={handleHorisontalBar}
         onBlur={handleHorisontalBarBlur}
         onFocus={handleHorisontalBarFocus}
@@ -183,7 +183,7 @@ export const UserResultForm = () => {
       />
       <Input
         value={bars}
-        placeholder="Брусья"
+        label="Брусья"
         onChange={handleBars}
         onBlur={handleBarsBlur}
         onFocus={handleBarsFocus}
@@ -191,7 +191,7 @@ export const UserResultForm = () => {
       />
       <Input
         value={pushups}
-        placeholder="Отжимания"
+        label="Отжимания"
         onChange={handlePushups}
         onBlur={handlePushupsBlur}
         onFocus={handlePushupsFocus}

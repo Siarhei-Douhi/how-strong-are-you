@@ -28,3 +28,6 @@
 .nameTheme {
   margin: 0;
 }
+.userName {
+  text-shadow: 2px 5px 3px rgb(0 0 0 / 57%);
+}

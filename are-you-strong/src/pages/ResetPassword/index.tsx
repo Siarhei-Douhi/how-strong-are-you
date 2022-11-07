@@ -45,7 +45,7 @@ export const ResetPassword = () => {
   };
 
   return (
-    <Container>
+    <Container type="white">
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
       </Header>

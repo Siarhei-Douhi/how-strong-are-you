@@ -1,7 +1,10 @@
 import { NavBar } from "../NavBar";
+import { useContext } from "react";
+import { Context } from "../../App";
 import style from "./style.module.css";
 
 export const Menu = () => {
+  const { isDark } = useContext(Context);
   return (
     <>
       <input id="check" type="checkbox" className={style.checkMenu} />
@@ -11,7 +14,9 @@ export const Menu = () => {
         <span className={`${style.burgerLines} ${style.ln3}`}></span>
         <span className={`${style.burgerLines} ${style.ln4}`}></span>
       </label>
-      <nav className={style.navToggle}>
+      <nav
+        className={`${style.navToggle} ${isDark ? style.navToggleDark : ""}`}
+      >
         <NavBar />
       </nav>
     </>

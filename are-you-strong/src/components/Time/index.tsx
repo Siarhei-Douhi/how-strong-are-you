@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode, useContext } from "react";
+import { Context } from "../../App";
 import style from "./style.module.css";
 
 export const Time = () => {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const { isDark } = useContext(Context);
 
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -14,5 +16,9 @@ export const Time = () => {
     };
   }, []);
 
-  return <div className={style.clock}>{time}</div>;
+  return (
+    <div className={`${style.clock} ${isDark ? style.clockDark : ""}`}>
+      {time}
+    </div>
+  );
 };

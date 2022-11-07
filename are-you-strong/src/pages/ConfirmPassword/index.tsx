@@ -41,7 +41,7 @@ export const ConfirmPassword = () => {
   };
 
   return (
-    <Container>
+    <Container type="white">
       <Header />
       <div className={style.wrapper}>
         <h1 className={style.title}> Enter a new password</h1>

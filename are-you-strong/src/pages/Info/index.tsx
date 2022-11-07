@@ -11,7 +11,7 @@ export const Info = () => {
     navigate(-1);
   };
   return (
-    <Container>
+    <Container type="black">
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
         <Title text={"Информация о приложении"} />

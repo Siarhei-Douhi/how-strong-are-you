@@ -21,7 +21,7 @@ export const TraningPrograms = () => {
   };
 
   return (
-    <Container>
+    <Container className={style.backgroundContainer}>
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
         <Title text="Программы тренировок" />

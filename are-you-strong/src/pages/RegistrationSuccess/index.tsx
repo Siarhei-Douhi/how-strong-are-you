@@ -16,7 +16,7 @@ export const RegistrationConfirmation = () => {
   };
 
   return (
-    <Container>
+    <Container type="white">
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
       </Header>

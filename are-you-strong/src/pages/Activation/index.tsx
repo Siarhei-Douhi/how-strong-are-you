@@ -16,7 +16,7 @@ export const Activation = () => {
   }, []);
 
   return (
-    <Container>
+    <Container type="white">
       <Header />
       <InfoTemplate
         title={"Success"}

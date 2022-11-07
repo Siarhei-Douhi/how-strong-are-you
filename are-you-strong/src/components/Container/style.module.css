@@ -4,4 +4,42 @@
   border: 1px solid black;
   position: relative;
   margin: 20px auto;
+  background-image: url("../../assets/images/sport-street-workout-turnik.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.black {
+  background: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    url("../../assets/images/sport-street-workout-turnik.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.white {
+  background: linear-gradient(
+      360deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.6) 100%
+    ),
+    url("../../assets/images/sport-street-workout-turnik.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.containerDark {
+  background: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+    url("../../assets/images/sport-street-workout-turnik-5112.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -3,7 +3,7 @@ import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
 import { RegistrationForm } from "../../components/RegistrationForm";
 import { Button } from "../../components/Button";
-import styles from "./style.module.css";
+import style from "./style.module.css";
 
 export const Registration = () => {
   const navigate = useNavigate();
@@ -12,15 +12,15 @@ export const Registration = () => {
   };
 
   return (
-    <Container>
+    <Container type="white">
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
       </Header>
-      <div className={styles.wrapperLink}>
+      <div className={style.wrapperLink}>
         <NavLink
           to="/login"
           className={({ isActive }) =>
-            isActive ? styles.active_link : styles.noActive_link
+            isActive ? style.active_link : style.noActive_link
           }
         >
           Login
@@ -29,7 +29,7 @@ export const Registration = () => {
         <NavLink
           to={"/registration"}
           className={({ isActive }) =>
-            isActive ? styles.active_link : styles.noActive_link
+            isActive ? style.active_link : style.noActive_link
           }
         >
           Registration

@@ -15,7 +15,7 @@ export const TrainingGifInfo = (props: IProps) => {
   return (
     <div className={style.wrap}>
       <div className={`${visibility ? style.visibleOn : style.visibleOff}`}>
-        <img src={props.img} alt="menu" className={""} />
+        <img src={props.img} alt="menu" className={style.img} />
       </div>
       <Button
         text="техника выполнения"

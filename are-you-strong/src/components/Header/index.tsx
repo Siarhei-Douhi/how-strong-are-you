@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { ReactNode, useContext } from "react";
+import { Context } from "../../App";
 import style from "./style.module.css";
 
 interface IProps {
@@ -6,5 +7,10 @@ interface IProps {
 }
 
 export const Header = (props: IProps) => {
-  return <div className={style.header}>{props.children}</div>;
+  const { isDark } = useContext(Context);
+  return (
+    <div className={`${style.header} ${isDark ? style.headerDark : ""}`}>
+      {props.children}
+    </div>
+  );
 };
