@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { LevelProgram } from "../../components/LevelProgram";
 import { Title } from "../../components/Title";
-import { TrainingGifInfo } from "../../components/TrainingGifInfo";
+// import { TrainingGifInfo } from "../../components/TrainingGifInfo";
 import { getGifById, getLevelData } from "./helpers";
 import style from "./style.module.css";
 
@@ -15,7 +15,7 @@ export const SelectedLevel = () => {
     navigate(-1);
   };
 
-  const newGif = params.id ? getGifById(+params.id) : "";
+  // const newGif = params.id ? getGifById(+params.id) : "";
 
   const level = params.id ? getLevelData(+params.id)?.level : 0;
   const arrayLevelId = params.id
@@ -28,8 +28,8 @@ export const SelectedLevel = () => {
         <Button text="<" type="array" onClick={navigateBack} />
         <Title text={`Уровень ${level}`} />
       </Header>
-      <div>{arrayLevelId ? <LevelProgram array={arrayLevelId} /> : null}</div>
-      {newGif ? <TrainingGifInfo img={newGif} /> : null}
+      {arrayLevelId ? <LevelProgram array={arrayLevelId} /> : null}
+      <Button text="начать тренировку" type="primary1" onClick={() => {}} />
     </Container>
   );
 };

@@ -22,6 +22,15 @@ export const getGifById = (id: number) => {
   }
 };
 
+export const getKeyById = (id: number) => {
+  if (id < 12) {
+    return "horisontalBarGif";
+  } else if (id > 11 && id < 32) {
+    return "barsGif";
+  } else if (id > 31) {
+    return "pushupGif";
+  }
+};
 // export const getLevelData = (id: number) => {
 //   if (id < 12) {
 //     const data = getArrayLevel(levelsHorisontBar, id);
