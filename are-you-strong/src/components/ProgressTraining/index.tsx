@@ -1,9 +1,14 @@
-import { stringify } from "querystring";
+import { useState, useContext, useEffect } from "react";
 import { Button } from "../Button";
+import { CountList } from "../CountList";
+import { useNavigate, useParams } from "react-router-dom";
+import { getKeyById, getLevelData } from "../../pages/SelectedLevel/helpers";
+import style from "./style.module.css";
+
+import { Context } from "../../App";
 
 interface IProps {
-  key: string;
-  array: (string | undefined)[];
+  id: number;
 }
 
 const getTrainingProgress = (key: string) => {
@@ -16,23 +21,79 @@ const getTrainingProgress = (key: string) => {
 };
 
 export const ProgressTraining = (props: IProps) => {
-  let trainingProgress = getTrainingProgress(props.key);
-  // trainingProgressLocalStorage = {
-  //   level: string;
-  //   day:number;
+  const { user } = useContext(Context);
+  const [active, setActive] = useState(0);
+  const [textButton, setTextButton] = useState("");
+  const navigate = useNavigate();
+  const navigateLavelDays = () => {
+    navigate(`/selected-level/${params.id}`);
+  };
+  const params = useParams();
 
-  // }
-  if (trainingProgress) {
-  }
+  let keyLocal = getKeyById(props.id);
+
+  const trainingProgress = getTrainingProgress(`${keyLocal}${user?.id}`);
+  console.log(trainingProgress);
+  const activeDay = trainingProgress.day;
+  const level = trainingProgress.level;
+  const arrayLevelId = params.id
+    ? getLevelData(+params.id)?.arrayLevelId
+    : [""];
+
+  const getTextButton = () => {
+    const arrayProgramDay = arrayLevelId
+      ? arrayLevelId[activeDay].split(" ")
+      : [""];
+    return arrayProgramDay[active];
+  };
+
+  const newTrainingProgress = {
+    level: level,
+    day: activeDay + 1,
+    id: params.id,
+  };
+
+  const onClickReady = () => {
+    if (
+      arrayLevelId &&
+      arrayLevelId[activeDay].split(" ").length - 1 == active
+    ) {
+      localStorage.setItem(
+        `${keyLocal}${user?.id}`,
+        JSON.stringify(newTrainingProgress)
+      );
+      // navigate(`/selected-level/${params.id}`);
+      navigateLavelDays();
+    } else {
+      setActive(active + 1);
+    }
+    console.log(active);
+  };
+
+  useEffect(() => {
+    setTextButton(getTextButton());
+  }, [active]);
+
   return (
-    <div>
+    <div className={style.wrapper}>
+      <h2>Уровень {level}</h2>
+      {arrayLevelId ? (
+        <CountList
+          array={arrayLevelId[activeDay]}
+          day={activeDay + 1}
+          active={active}
+        />
+      ) : null}
       <h2>Выполните повтрорений</h2>
-      <Button type="primary" text="" onClick={() => {}} />
-      <ul>
+      <div onClick={onClickReady} className={style.ready}>
+        <p>{textButton}</p>
+        <p>готово</p>
+      </div>
+      <ol className={style.list}>
         <li>Выполните подход</li>
         <li>Нажмите на кнопку</li>
         <li>Отдыхайте 2 минуты</li>
-      </ul>
+      </ol>
     </div>
   );
 };

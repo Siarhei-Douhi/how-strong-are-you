@@ -1,47 +1,44 @@
 import style from "./style.module.css";
-import { getUniqueId } from "../../helpers";
+
 import { CountList } from "../CountList";
+import { getKeyById } from "../../pages/SelectedLevel/helpers";
+import { useContext } from "react";
+
+import { Context } from "../../App";
 
 interface IProp {
   array: (string | undefined)[];
-  key?: string;
+  id: string;
 }
+
 const getDataProgress = (key: string) => {
   const data = localStorage.getItem(key);
   let dataProgress;
-  if (data !== null) {
+  if (data) {
     dataProgress = JSON.parse(data);
   }
   return dataProgress;
 };
 
 export const LevelProgram = (props: IProp) => {
-  let data = props.key ? getDataProgress(props.key) : "";
-  // let arrCountList = [""];
-  // let all = 0;
+  const { user } = useContext(Context);
+
+  let keyLocStor = `${getKeyById(+props.id)}${user?.id}`;
+
+  const data = keyLocStor ? getDataProgress(keyLocStor) : "";
+
   return (
     <div className={style.wrapper}>
       {props.array
         ? props.array.map((item, index) => {
-            if (item && !data && index == 0) {
-              // arrCountList = item.split(" ");
-              // all = arrCountList.reduce((a, b) => +a + +b, 0);
+            if (item && !data && index === 0) {
               return <CountList array={item} day={index + 1} active={index} />;
+            } else if (item && data && index === data.day) {
+              return <CountList array={item} day={index + 1} active={0} />;
             }
 
             return (
-              // <div className={style.container} key={getUniqueId()}>
-              //   <div className={style.wrapperInfo}>
-              //     <h3>День {index + 1}</h3>
-              //     <h3>Всего: {all}</h3>
-              //   </div>
-              //   {item? <CountList array={item} day={index + 1}/>: null}
-              // </div>
-              <>
-                {item ? (
-                  <CountList array={item} day={index + 1} active={undefined} />
-                ) : null}
-              </>
+              <>{item ? <CountList array={item} day={index + 1} /> : null}</>
             );
           })
         : null}

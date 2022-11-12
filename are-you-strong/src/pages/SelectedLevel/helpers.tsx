@@ -4,6 +4,10 @@ import { levelsPushup } from "../../workoutData/levelsPushup";
 import { ILevel } from "../../types/levels";
 import { horisontalBarGif, barsGif, pushupGif } from "../../assets";
 
+import { useContext } from "react";
+
+import { Context } from "../../App";
+
 const getArrayLevel = (array: ILevel[], id: number) => {
   return array.find((item) => {
     if (+item.id === id) {
@@ -24,12 +28,14 @@ export const getGifById = (id: number) => {
 
 export const getKeyById = (id: number) => {
   if (id < 12) {
-    return "horisontalBarGif";
+    return `horisontalBar`;
   } else if (id > 11 && id < 32) {
-    return "barsGif";
-  } else if (id > 31) {
-    return "pushupGif";
+    return "bars";
   }
+  // } else if (id > 31) {
+  //   return "pushup";
+  // }
+  return "pushup";
 };
 // export const getLevelData = (id: number) => {
 //   if (id < 12) {
