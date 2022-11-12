@@ -25,15 +25,16 @@ export const ProgressTraining = (props: IProps) => {
   const [active, setActive] = useState(0);
   const [textButton, setTextButton] = useState("");
   const navigate = useNavigate();
+
+  const params = useParams();
   const navigateLavelDays = () => {
     navigate(`/selected-level/${params.id}`);
   };
-  const params = useParams();
 
   let keyLocal = getKeyById(props.id);
 
   const trainingProgress = getTrainingProgress(`${keyLocal}${user?.id}`);
-  console.log(trainingProgress);
+
   const activeDay = trainingProgress.day;
   const level = trainingProgress.level;
   const arrayLevelId = params.id
@@ -62,12 +63,10 @@ export const ProgressTraining = (props: IProps) => {
         `${keyLocal}${user?.id}`,
         JSON.stringify(newTrainingProgress)
       );
-      // navigate(`/selected-level/${params.id}`);
-      navigateLavelDays();
+      navigate(`/selected-level/${params.id}`);
     } else {
       setActive(active + 1);
     }
-    console.log(active);
   };
 
   useEffect(() => {

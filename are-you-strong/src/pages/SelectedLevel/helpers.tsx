@@ -16,14 +16,14 @@ const getArrayLevel = (array: ILevel[], id: number) => {
   });
 };
 
-export const getGifById = (id: number) => {
+export const getPageById = (id: number) => {
   if (id < 12) {
-    return horisontalBarGif;
+    return "/horizontal-bar";
   } else if (id > 11 && id < 32) {
-    return barsGif;
-  } else if (id > 31) {
-    return pushupGif;
+    return "/bars";
   }
+
+  return "/pushup";
 };
 
 export const getKeyById = (id: number) => {

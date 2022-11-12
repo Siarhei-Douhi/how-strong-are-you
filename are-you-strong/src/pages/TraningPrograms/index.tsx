@@ -4,20 +4,48 @@ import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import { Title } from "../../components/Title";
+import { useContext } from "react";
+
+import { Context } from "../../App";
+
+const getDataProgress = (key: string) => {
+  const data = localStorage.getItem(key);
+  let dataProgress;
+  if (data) {
+    dataProgress = JSON.parse(data);
+  }
+  return dataProgress;
+};
 
 export const TraningPrograms = () => {
+  const { user } = useContext(Context);
+
   const navigate = useNavigate();
   const navigateBack = () => {
-    navigate(-1);
+    navigate("/");
   };
+
+  const getNavigateUrl = (key: string, url: string) => {
+    const keyLocalStorage = `${key}${user?.id}`;
+    const dataUserProgress = getDataProgress(keyLocalStorage);
+    const id = dataUserProgress ? dataUserProgress.id : "";
+    if (id) {
+      navigate(`/selected-level/${id}`);
+    } else {
+      navigate(url);
+    }
+  };
+
   const navigateHorizontalBar = () => {
-    navigate("/horizontal-bar");
+    getNavigateUrl("horisontalBar", "/horizontal-bar");
   };
   const navigateBars = () => {
-    navigate("/bars");
+    getNavigateUrl("bars", "/bars");
+    // navigate("/bars");
   };
   const navigatePushup = () => {
-    navigate("/pushup");
+    getNavigateUrl("pushup", "/pushup");
+    // navigate("/pushup");
   };
 
   return (

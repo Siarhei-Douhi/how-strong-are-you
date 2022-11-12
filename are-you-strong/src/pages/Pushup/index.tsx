@@ -12,7 +12,7 @@ import { TrainingGifInfo } from "../../components/TrainingGifInfo";
 export const Pushup = () => {
   const navigate = useNavigate();
   const navigateBack = () => {
-    navigate(-1);
+    navigate("/training-programs");
   };
   return (
     <Container>

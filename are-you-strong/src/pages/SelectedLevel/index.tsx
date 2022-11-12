@@ -4,8 +4,7 @@ import { Button } from "../../components/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { LevelProgram } from "../../components/LevelProgram";
 import { Title } from "../../components/Title";
-// import { TrainingGifInfo } from "../../components/TrainingGifInfo";
-import { getGifById, getLevelData, getKeyById } from "./helpers";
+import { getPageById, getLevelData, getKeyById } from "./helpers";
 import style from "./style.module.css";
 import { useContext, useEffect, useState } from "react";
 
@@ -13,11 +12,15 @@ import { Context } from "../../App";
 
 export const SelectedLevel = () => {
   const { user } = useContext(Context);
-  // const [keyLocalStorage, setKeyLocalStorage] = useState("");
+  const [disableFinish, setDisableFinish] = useState<boolean>(true);
+  const [disableStart, setDisableStart] = useState<boolean>(false);
+  const [textStart, setTextStart] = useState<string>("начать тренировку");
   const params = useParams();
+
   const navigate = useNavigate();
   const navigateBack = () => {
-    navigate(-1);
+    let url = params.id ? getPageById(+params.id) : "/horizontal-bar";
+    navigate(url);
   };
 
   // позже заменить
@@ -29,23 +32,10 @@ export const SelectedLevel = () => {
     }
     return dataProgress;
   };
+
   let keyLocalStorage = params.id ? `${getKeyById(+params.id)}${user?.id}` : "";
-  // useEffect(() => {
-  //   setKeyLocalStorage(params.id ? `${getKeyById(+params.id)}${user?.id}` : "");
-  // }, []);
 
   const dataProgress = getDataProgress(keyLocalStorage);
-
-  let textButton = dataProgress ? "продолжить тренировку" : "начать тренировку";
-
-  // const newGif = params.id ? getGifById(+params.id) : "";
-
-  // trainingProgressLocalStorage = {
-  //   level: string;
-  //   day:number;
-  //  id: string;
-
-  // }
 
   const level = params.id ? getLevelData(+params.id)?.level : 0;
   const arrayLevelId = params.id
@@ -58,6 +48,18 @@ export const SelectedLevel = () => {
     id: params.id,
   };
 
+  useEffect(() => {
+    if (arrayLevelId && dataProgress) {
+      setTextStart("продолжить тренировку");
+
+      if (arrayLevelId?.length == dataProgress.day) {
+        setTextStart("уровень пройден");
+        setDisableStart(true);
+      }
+      setDisableFinish(false);
+    }
+  }, []);
+
   const onClickStart = () => {
     if (!user) {
       navigate("/login");
@@ -69,17 +71,43 @@ export const SelectedLevel = () => {
       navigate(`/user-training/${dataProgress ? dataProgress.id : params.id}`);
     }
   };
+  const onClickBack = () => {
+    if (dataProgress) {
+      navigate("/training-programs");
+    } else {
+      navigate(-1);
+    }
+  };
+  const onClickFinish = () => {
+    if (dataProgress) {
+      localStorage.removeItem(keyLocalStorage);
+    }
+    navigateBack();
+  };
 
   return (
     <Container>
       <Header>
-        <Button text="<" type="array" onClick={navigateBack} />
+        <Button text="<" type="array" onClick={onClickBack} />
         <Title text={`Уровень ${level}`} />
       </Header>
       {arrayLevelId ? (
         <LevelProgram array={arrayLevelId} id={params.id ? params.id : ""} />
       ) : null}
-      <Button text={textButton} type="primary1" onClick={onClickStart} />
+      <div className={style.buttonWrapper}>
+        <Button
+          text={textStart}
+          type="primary1"
+          onClick={onClickStart}
+          disabled={disableStart}
+        />
+        <Button
+          text={"выбрать уровень"}
+          type="primary1"
+          onClick={onClickFinish}
+          disabled={disableFinish}
+        />
+      </div>
     </Container>
   );
 };
