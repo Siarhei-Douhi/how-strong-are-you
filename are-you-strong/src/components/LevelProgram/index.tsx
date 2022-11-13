@@ -5,6 +5,7 @@ import { getKeyById } from "../../pages/SelectedLevel/helpers";
 import { useContext } from "react";
 
 import { Context } from "../../App";
+import { getUniqueId } from "../../helpers";
 
 interface IProp {
   array: (string | undefined)[];
@@ -28,7 +29,7 @@ export const LevelProgram = (props: IProp) => {
   const data = keyLocStor ? getDataProgress(keyLocStor) : "";
 
   return (
-    <div className={style.wrapper}>
+    <div className={style.wrapper} key={getUniqueId()}>
       {props.array
         ? props.array.map((item, index) => {
             if (item && !data && index === 0) {

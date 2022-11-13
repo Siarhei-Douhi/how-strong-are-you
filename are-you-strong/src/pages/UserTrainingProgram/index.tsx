@@ -14,7 +14,6 @@ export const UserTrainingProgram = () => {
     <Container>
       <Header>
         <Button text="<" type="array" onClick={navigateBack} />
-        {/* <Title text={`Уровень ${level}`} /> */}
       </Header>
       {params.id ? <ProgressTraining id={+params.id} /> : null}
     </Container>

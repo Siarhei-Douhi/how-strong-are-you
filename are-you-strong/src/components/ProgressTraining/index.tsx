@@ -63,7 +63,8 @@ export const ProgressTraining = (props: IProps) => {
         `${keyLocal}${user?.id}`,
         JSON.stringify(newTrainingProgress)
       );
-      navigate(`/selected-level/${params.id}`);
+      navigateLavelDays();
+      // navigate(`/selected-level/${params.id}`);
     } else {
       setActive(active + 1);
     }
