@@ -3,10 +3,8 @@ import { Button } from "../Button";
 import { ChangeEventHandler, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
-// import userEvent from "@testing-library/user-event";
 import { Context } from "../../App";
 import { validateNumber, validateCountry } from "../../utils/validation";
-//
 import { getUserData } from "../../helpers";
 
 export const UserResultForm = () => {

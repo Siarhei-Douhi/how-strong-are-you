@@ -1,4 +1,3 @@
-// import { isPropertySignature } from "typescript";
 import style from "./style.module.css";
 import { getUniqueId } from "../../helpers";
 

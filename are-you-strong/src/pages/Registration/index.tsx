@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { Header } from "../../components/Header";
 import { RegistrationForm } from "../../components/RegistrationForm";

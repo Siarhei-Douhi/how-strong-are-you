@@ -1,6 +1,6 @@
 import style from "./style.module.css";
 import { ILevel } from "../../types/levels";
-import { ReactNode, useContext } from "react";
+import { useContext } from "react";
 import { Context } from "../../App";
 
 interface Iprops extends ILevel {

@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react";
-import { Button } from "../Button";
 import { CountList } from "../CountList";
 import { useNavigate, useParams } from "react-router-dom";
 import { getKeyById, getLevelData } from "../../pages/SelectedLevel/helpers";
@@ -64,7 +63,6 @@ export const ProgressTraining = (props: IProps) => {
         JSON.stringify(newTrainingProgress)
       );
       navigateLavelDays();
-      // navigate(`/selected-level/${params.id}`);
     } else {
       setActive(active + 1);
     }

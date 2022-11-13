@@ -5,17 +5,8 @@ import { useNavigate } from "react-router-dom";
 import style from "./style.module.css";
 import { Title } from "../../components/Title";
 import { useContext } from "react";
-
+import { getDataProgress } from "../../helpers";
 import { Context } from "../../App";
-
-const getDataProgress = (key: string) => {
-  const data = localStorage.getItem(key);
-  let dataProgress;
-  if (data) {
-    dataProgress = JSON.parse(data);
-  }
-  return dataProgress;
-};
 
 export const TraningPrograms = () => {
   const { user } = useContext(Context);
@@ -39,13 +30,13 @@ export const TraningPrograms = () => {
   const navigateHorizontalBar = () => {
     getNavigateUrl("horisontalBar", "/horizontal-bar");
   };
+
   const navigateBars = () => {
     getNavigateUrl("bars", "/bars");
-    // navigate("/bars");
   };
+
   const navigatePushup = () => {
     getNavigateUrl("pushup", "/pushup");
-    // navigate("/pushup");
   };
 
   return (

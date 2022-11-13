@@ -8,3 +8,12 @@ export const getUserData = (id: number | undefined) => {
   }
   return userData;
 };
+
+export const getDataProgress = (key: string) => {
+  const data = localStorage.getItem(key);
+  let dataProgress;
+  if (data) {
+    dataProgress = JSON.parse(data);
+  }
+  return dataProgress;
+};

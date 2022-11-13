@@ -4,11 +4,10 @@ import { Button } from "../../components/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { LevelProgram } from "../../components/LevelProgram";
 import { Title } from "../../components/Title";
-
+import { getDataProgress } from "../../helpers";
 import { getPageById, getLevelData, getKeyById } from "./helpers";
 import style from "./style.module.css";
 import { useContext, useEffect, useState } from "react";
-
 import { Context } from "../../App";
 
 export const SelectedLevel = () => {
@@ -20,21 +19,13 @@ export const SelectedLevel = () => {
 
   const navigate = useNavigate();
   const navigateBack = () => {
-    let url = params.id ? getPageById(+params.id) : "/horizontal-bar";
+    const url = params.id ? getPageById(+params.id) : "/horizontal-bar";
     navigate(url);
   };
 
-  // позже заменить
-  const getDataProgress = (key: string) => {
-    const data = localStorage.getItem(key);
-    let dataProgress;
-    if (data !== null) {
-      dataProgress = JSON.parse(data);
-    }
-    return dataProgress;
-  };
-
-  let keyLocalStorage = params.id ? `${getKeyById(+params.id)}${user?.id}` : "";
+  const keyLocalStorage = params.id
+    ? `${getKeyById(+params.id)}${user?.id}`
+    : "";
 
   const dataProgress = getDataProgress(keyLocalStorage);
 
@@ -72,6 +63,7 @@ export const SelectedLevel = () => {
       navigate(`/user-training/${dataProgress ? dataProgress.id : params.id}`);
     }
   };
+
   const onClickBack = () => {
     if (dataProgress) {
       navigate("/training-programs");
@@ -79,6 +71,7 @@ export const SelectedLevel = () => {
       navigate(-1);
     }
   };
+
   const onClickFinish = () => {
     if (dataProgress) {
       localStorage.removeItem(keyLocalStorage);
