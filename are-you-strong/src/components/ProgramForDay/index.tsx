@@ -7,9 +7,10 @@ interface IProp {
   day: number;
 }
 
-export const CountList = (props: IProp) => {
+export const ProgramForDay = (props: IProp) => {
   let arrCountList = props.array.split(" ");
   let all = arrCountList.reduce((a, b) => +a + +b, 0);
+
   return (
     <div className={style.container} key={getUniqueId()}>
       <div className={style.wrapperInfo}>

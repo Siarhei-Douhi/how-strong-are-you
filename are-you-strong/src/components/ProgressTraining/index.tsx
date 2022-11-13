@@ -1,7 +1,8 @@
 import { useState, useContext, useEffect } from "react";
-import { CountList } from "../CountList";
+import { ProgramForDay } from "../ProgramForDay";
 import { useNavigate, useParams } from "react-router-dom";
 import { getKeyById, getLevelData } from "../../pages/SelectedLevel/helpers";
+import { getDataProgress } from "../../helpers";
 import style from "./style.module.css";
 
 import { Context } from "../../App";
@@ -9,15 +10,6 @@ import { Context } from "../../App";
 interface IProps {
   id: number;
 }
-
-const getTrainingProgress = (key: string) => {
-  const data = localStorage.getItem(key);
-  let trainingProgress;
-  if (data !== null) {
-    trainingProgress = JSON.parse(data);
-  }
-  return trainingProgress;
-};
 
 export const ProgressTraining = (props: IProps) => {
   const { user } = useContext(Context);
@@ -32,7 +24,7 @@ export const ProgressTraining = (props: IProps) => {
 
   let keyLocal = getKeyById(props.id);
 
-  const trainingProgress = getTrainingProgress(`${keyLocal}${user?.id}`);
+  const trainingProgress = getDataProgress(`${keyLocal}${user?.id}`);
 
   const activeDay = trainingProgress.day;
   const level = trainingProgress.level;
@@ -76,7 +68,7 @@ export const ProgressTraining = (props: IProps) => {
     <div className={style.wrapper}>
       <h2>Уровень {level}</h2>
       {arrayLevelId ? (
-        <CountList
+        <ProgramForDay
           array={arrayLevelId[activeDay]}
           day={activeDay + 1}
           active={active}

@@ -1,5 +1,5 @@
 import style from "./style.module.css";
-import { CountList } from "../CountList";
+import { ProgramForDay } from "../ProgramForDay";
 import { getKeyById } from "../../pages/SelectedLevel/helpers";
 import { useContext } from "react";
 import { Context } from "../../App";
@@ -23,13 +23,17 @@ export const LevelProgram = (props: IProp) => {
       {props.array
         ? props.array.map((item, index) => {
             if (item && !data && index === 0) {
-              return <CountList array={item} day={index + 1} active={index} />;
+              return (
+                <ProgramForDay array={item} day={index + 1} active={index} />
+              );
             } else if (item && data && index === data.day) {
-              return <CountList array={item} day={index + 1} active={0} />;
+              return <ProgramForDay array={item} day={index + 1} active={0} />;
             }
 
             return (
-              <>{item ? <CountList array={item} day={index + 1} /> : null}</>
+              <>
+                {item ? <ProgramForDay array={item} day={index + 1} /> : null}
+              </>
             );
           })
         : null}
