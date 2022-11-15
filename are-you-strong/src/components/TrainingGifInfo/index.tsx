@@ -9,12 +9,13 @@ interface IProps {
 export const TrainingGifInfo = (props: IProps) => {
   const [visibility, setVisibility] = useState<boolean>(false);
   const onClickButton = () => {
-    let a = !visibility;
-    setVisibility(a);
+    setVisibility(!visibility);
   };
   return (
     <div className={style.wrap}>
-      <div className={`${visibility ? style.visibleOn : style.visibleOff}`}>
+      <div
+        className={`${style.visibleOn} ${visibility ? "" : style.visibleOff}`}
+      >
         <img src={props.img} alt="menu" className={style.img} />
       </div>
       <Button

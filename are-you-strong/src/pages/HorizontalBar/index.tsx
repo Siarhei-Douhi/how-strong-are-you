@@ -6,11 +6,13 @@ import style from "./style.module.css";
 import { TrainingLevelList } from "../../components/TrainingLevelList";
 import { levelsHorisontBar } from "../../workoutData/levelsHorisontBar";
 import { Title } from "../../components/Title";
+import { horisontalBarGif } from "../../assets";
+import { TrainingGifInfo } from "../../components/TrainingGifInfo";
 
 export const HorizontalBar = () => {
   const navigate = useNavigate();
   const navigateBack = () => {
-    navigate(-1);
+    navigate("/training-programs");
   };
   return (
     <Container>
@@ -24,6 +26,7 @@ export const HorizontalBar = () => {
           trainingType="Подтягиваетесь"
         />
       </div>
+      <TrainingGifInfo img={horisontalBarGif} />
     </Container>
   );
 };

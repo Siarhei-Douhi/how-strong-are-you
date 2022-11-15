@@ -1,22 +1,23 @@
 .wrap {
+  height: 63px;
   width: 360px;
   position: absolute;
   bottom: 20px;
   left: calc(50% - 180px);
 }
+
 .visibleOn {
+  position: absolute;
+  bottom: 63px;
   height: 360px;
-  opacity: 1;
+  overflow: hidden;
   transition: 1s ease;
   margin-bottom: 10px;
   box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 70%);
 }
 .visibleOff {
-  height: 360px;
-  opacity: 0;
-  transition: 1s ease;
+  height: 0px;
 }
 .img {
-  opacity: 0.7;
   border-radius: 5px;
 }

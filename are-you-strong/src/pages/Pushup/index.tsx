@@ -6,11 +6,13 @@ import style from "./style.module.css";
 import { TrainingLevelList } from "../../components/TrainingLevelList";
 import { levelsPushup } from "../../workoutData/levelsPushup";
 import { Title } from "../../components/Title";
+import { pushupGif } from "../../assets";
+import { TrainingGifInfo } from "../../components/TrainingGifInfo";
 
 export const Pushup = () => {
   const navigate = useNavigate();
   const navigateBack = () => {
-    navigate(-1);
+    navigate("/training-programs");
   };
   return (
     <Container>
@@ -21,6 +23,7 @@ export const Pushup = () => {
       <div className={style.levelListWrapper}>
         <TrainingLevelList levels={levelsPushup} trainingType="Отжимаетесь" />
       </div>
+      <TrainingGifInfo img={pushupGif} />
     </Container>
   );
 };

@@ -1,28 +1,39 @@
 import style from "./style.module.css";
+import { ProgramForDay } from "../ProgramForDay";
+import { getKeyById } from "../../pages/SelectedLevel/helpers";
+import { useContext } from "react";
+import { Context } from "../../App";
 import { getUniqueId } from "../../helpers";
+import { getDataProgress } from "../../helpers";
 
 interface IProp {
   array: (string | undefined)[];
+  id: string;
 }
 
 export const LevelProgram = (props: IProp) => {
-  let all = 0;
+  const { user } = useContext(Context);
+
+  const keyLocStor = `${getKeyById(+props.id)}${user?.id}`;
+
+  const data = keyLocStor ? getDataProgress(keyLocStor) : "";
+
   return (
-    <div className={style.wrapper}>
+    <div className={style.wrapper} key={getUniqueId()}>
       {props.array
         ? props.array.map((item, index) => {
-            if (item) {
-              all = item.split(" ").reduce((a, b) => +a + +b, 0);
+            if (item && !data && index === 0) {
+              return (
+                <ProgramForDay array={item} day={index + 1} active={index} />
+              );
+            } else if (item && data && index === data.day) {
+              return <ProgramForDay array={item} day={index + 1} active={0} />;
             }
 
             return (
-              <div className={style.container} key={getUniqueId()}>
-                <div className={style.wrapperInfo}>
-                  <h3>День {index + 1}</h3>
-                  <h3>Всего: {all}</h3>
-                </div>
-                <div className={style.text}>{item}</div>
-              </div>
+              <>
+                {item ? <ProgramForDay array={item} day={index + 1} /> : null}
+              </>
             );
           })
         : null}

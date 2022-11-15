@@ -17,6 +17,7 @@ import { RaitingUsers } from "../pages/RaitingUsers";
 import { ConfirmPassword } from "../pages/ConfirmPassword";
 import { UserData } from "../pages/UserData";
 import { RegistrationConfirmation } from "../pages/RegistrationSuccess";
+import { UserTrainingProgram } from "../pages/UserTrainingProgram";
 
 export const RootRouter = () => {
   return (
@@ -37,6 +38,7 @@ export const RootRouter = () => {
       <Route path="/pushup" element={<Pushup />} />
       <Route path="/selected-level/:id" element={<SelectedLevel />} />
       <Route path="/info" element={<Info />} />
+      <Route path="/user-training/:id" element={<UserTrainingProgram />} />
       <Route path="/raiting-users" element={useLoginGuard(<RaitingUsers />)} />
       <Route path="/data-user" element={useLoginGuard(<UserData />)} />
       <Route path="*" element={<Error />} />

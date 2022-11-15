@@ -6,11 +6,13 @@ import style from "./style.module.css";
 import { TrainingLevelList } from "../../components/TrainingLevelList";
 import { levelsBars } from "../../workoutData/levelsBars";
 import { Title } from "../../components/Title";
+import { barsGif } from "../../assets";
+import { TrainingGifInfo } from "../../components/TrainingGifInfo";
 
 export const Bars = () => {
   const navigate = useNavigate();
   const navigateBack = () => {
-    navigate(-1);
+    navigate("/training-programs");
   };
   return (
     <Container>
@@ -21,6 +23,7 @@ export const Bars = () => {
       <div className={style.levelListWrapper}>
         <TrainingLevelList levels={levelsBars} trainingType="Отжимаетесь" />
       </div>
+      <TrainingGifInfo img={barsGif} />
     </Container>
   );
 };
